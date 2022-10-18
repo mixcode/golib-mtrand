@@ -19,7 +19,13 @@ func (mt *MT32) Int63() int64 {
 	return r2<<32 | r1
 }
 
-// mt32.Read() is an io.Reader interface for crypto/random
+// mt32.Uint64() is an interface member for math/rand (added in go 1.8)
+func (mt *MT32) Uint64() uint64 {
+	r1, r2 := uint64(mt.GenUint32()), uint64(mt.GenUint32())
+	return r2<<32 | r1
+}
+
+// mt32.Read() is an io.Reader interface for crypto/rand
 func (mt *MT32) Read(buf []byte) (n int, err error) {
 	l := len(buf)
 	for l > 4 {
@@ -50,7 +56,12 @@ func (mt *MT64) Int63() int64 {
 	return mt.GenInt63()
 }
 
-// mt64.Read() is an io.Reader interface for crypto/random
+// mt64.Uint64() is an interface member for math/rand (added in go 1.8)
+func (mt *MT64) Uint64() uint64 {
+	return mt.GenUint64()
+}
+
+// mt64.Read() is an io.Reader interface for crypto/rand
 func (mt *MT64) Read(buf []byte) (n int, err error) {
 	l := len(buf)
 	for l > 8 {

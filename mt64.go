@@ -100,9 +100,7 @@ func (mt *MT64) Init(seed uint64) {
 	}
 }
 
-// initialize by an array with array-length
-// init_key is the array for initializing keys
-// key_length is its length
+// initialize by multiple uint64 values
 func (mt *MT64) InitByArray(init_key []uint64) {
 	mt.Init(19650218)
 

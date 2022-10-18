@@ -3,17 +3,22 @@ package mtrand_test
 import (
 	"crypto/rand"
 	"fmt"
+	"math"
+	"math/big"
 
-	"github.com/mixcode/golib/mtrand"
+	mtrand "github.com/mixcode/golib-mtrand"
 )
 
 func Example_crypto() {
-	// Example of feeding Mersenne Twister to crypto/rand
+	// Example of feeding Mersenne Twister to crypto/rand.
+	// WARNING: please note that the Mersesnne-Twister is NOT cryptographically secure.
 	mt64 := mtrand.NewMT64()
 	mt64.Init(12345)
-	prime, _ := rand.Prime(mt64, 128)
-	fmt.Println(prime)
+
+	max := big.NewInt(math.MaxInt64)
+	n, _ := rand.Int(mt64, max)
+	fmt.Println(n)
 
 	// Output:
-	// 334759673973030632160873385234059896671
+	// 4182756508441742683
 }

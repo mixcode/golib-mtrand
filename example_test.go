@@ -3,7 +3,7 @@ package mtrand_test
 import (
 	"fmt"
 
-	"github.com/mixcode/golib/mtrand"
+	"github.com/mixcode/golib-mtrand"
 )
 
 func Example() {

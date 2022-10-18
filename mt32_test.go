@@ -3,15 +3,16 @@ package mtrand_test
 import (
 	"bufio"
 	"bytes"
-	crand "crypto/rand"
+	cryptorand "crypto/rand"
 	"fmt"
+	"math"
 	"math/big"
 	mrand "math/rand"
 	"os"
 
 	"testing"
 
-	"github.com/mixcode/golib/mtrand"
+	mtrand "github.com/mixcode/golib-mtrand"
 )
 
 // compare generated numbers with the output from original program
@@ -107,10 +108,10 @@ func TestMT32Interface(t *testing.T) {
 		0x3e721641,
 		0x72583673,
 	}
-	mrand := mrand.New(mtrand.NewMT32())
-	mrand.Seed(1)
+	mathrand := mrand.New(mtrand.NewMT32())
+	mathrand.Seed(1)
 	for i, v := range target2 {
-		r := mrand.Int31()
+		r := mathrand.Int31()
 		if r != v {
 			t.Errorf("invalid value for iteration %d: expected %x, actual %x", i, v, r)
 		}
@@ -119,14 +120,15 @@ func TestMT32Interface(t *testing.T) {
 	// crypto/rand test
 	mt2 := mtrand.NewMT32()
 	mt2.Init(1)
-	targetPrime := big.NewInt(0)
-	targetPrime.SetString("261666422689015313070680887903668429107", 10)
-	prime, err := crand.Prime(mt2, 128)
+	targetN := big.NewInt(0)
+	targetN.SetString("2735023538682480639", 10)
+	//prime, err := cryptorand.Int(mt2, 128)
+	nBig, err := cryptorand.Int(mt2, big.NewInt(math.MaxInt64))
 	if err != nil {
 		t.Error(err)
 	}
-	if prime.Cmp(targetPrime) != 0 {
-		t.Errorf("generated prime is not equal: explected %v, actual %v", targetPrime, prime)
+	if nBig.Cmp(targetN) != 0 {
+		t.Errorf("generated prime is not equal: explected %v, actual %v", targetN, nBig)
 	}
 
 }

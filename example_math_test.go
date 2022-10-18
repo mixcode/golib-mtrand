@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 
-	"github.com/mixcode/golib/mtrand"
+	"github.com/mixcode/golib-mtrand"
 )
 
 func Example_math() {

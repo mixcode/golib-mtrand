@@ -1,5 +1,4 @@
 /*
-
 Package mtrand is Mersenne-Twister random number generators of 32-bit and 64-bit.
 
 This package is a translation of original Mersenne-Twister RNGs by Makoto Matsumoto and Takuji Nishimura, of Hiroshima Univ.
@@ -11,7 +10,5 @@ MT32 is 32-bit Mersenne Twister RNG, which generates same sequences with "mt1993
 MT64 is 64-bit Mersenne Twister RNG, which generates same sequences with "mt19937-64.c" implementation as well.
 
 Additionally, both RNGs have interfaces for Go's built-in math/rand and cryto/rand.
-
-
 */
 package mtrand
